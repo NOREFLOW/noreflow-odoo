@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="noreflow_connect_view_form" model="ir.ui.view">
+        <field name="name">noreflow.connect.form</field>
+        <field name="model">noreflow.connect</field>
+        <field name="arch" type="xml">
+            <form string="Connect to Noreflow">
+                <sheet>
+                    <p>
+                        Noreflow answers your customers on WhatsApp in Arabic and English, and every sale, invoice and
+                        receipt you issue there is written to this Odoo as a posted customer invoice, with its payment.
+                    </p>
+                    <group>
+                        <field name="odoo_url"/>
+                        <field name="database"/>
+                    </group>
+                    <ol>
+                        <li>Create an API key in Odoo: open your profile, then Account Security, then New API Key. Copy it.</li>
+                        <li>Press "Open Noreflow", sign in or create an account, and paste the key. Your Odoo address and database are filled in for you.</li>
+                    </ol>
+                    <p class="text-muted">
+                        The key stays between your Odoo and Noreflow; you can delete it in Odoo at any time to stop the connection.
+                    </p>
+                </sheet>
+                <footer>
+                    <button name="action_open_noreflow" type="object" string="Open Noreflow" class="btn-primary"/>
+                    <button name="action_open_api_keys" type="object" string="Create an API key" class="btn-secondary"/>
+                    <button string="Close" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="noreflow_connect_action" model="ir.actions.act_window">
+        <field name="name">Connect to Noreflow</field>
+        <field name="res_model">noreflow.connect</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="noreflow_connect_menu"
+              name="Noreflow"
+              parent="account.menu_finance_configuration"
+              action="noreflow_connect_action"
+              groups="account.group_account_manager"
+              sequence="90"/>
+</odoo>
